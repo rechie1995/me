@@ -118,4 +118,7 @@ gg
 首先开始装jdk
 然后装Android SDK
 现在正在下载SDK的插件。
+通过adb成功把script.bin文件copy出来
+明天继续后续的工作。
+在刷机的道路上狂野奔放~
 
