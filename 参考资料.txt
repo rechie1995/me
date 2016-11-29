@@ -1,0 +1,2 @@
+1、全志A20 Bootloader加载过程分析
+http://www.cnblogs.com/emlslxl/p/5620007.html
