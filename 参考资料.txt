@@ -1,2 +1,4 @@
 1、全志A20 Bootloader加载过程分析
 http://www.cnblogs.com/emlslxl/p/5620007.html
+2、提取安卓的linux内核和驱动
+http://blog.csdn.net/aorangezzz/article/details/24055391
