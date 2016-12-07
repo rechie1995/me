@@ -1,32 +1,29 @@
 #! /usr/bin/python
 #-*- coding: utf-8 -*-
+# author: rechie
+# 使用opencv修改图像大小
 
 import cv2
 import sys
 import os
 import getopt
 
-usage='resize2.py -i <inputPath> '
-class Usage(Exception):
-	def __init__(self, msg):
-		self.msg = msg
-
 def main():
 	try:
 		opts, args = getopt.getopt(sys.argv[1:],"i:",["help"])
-	except getopt.error,msg:
-		print msg
+		input_imagePath = ""
+		for op,value in opts:
+			if op == "-i":
+				input_imagePath = value
+			elif op == "--help":
+				print "ImageResize.py -i <inputPath>"
+				sys.exit()
+		if input_imagePath:
+			process(input_imagePath)
+			print "Process sucessed!"
+	except getopt.GetoptError:
 		print "for help use --help"
-		sys.exit(2)
-	input_imagePath = ""
-	for op,value in opts:
-		if op == "-i":
-			input_imagePath = value
-		elif op == "--help":
-			print usage
-			sys.exit()
-	process(input_imagePath)
-	print "Process sucessed!"
+		sys.exit()
 
 def process(input_imagePath):
 	filenumber = 0
