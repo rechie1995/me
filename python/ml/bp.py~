@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-# -*- coding:utf-8 -*-
-# author:耶鲁怕冷
+#-*-----utf-8-----*-
+# author:
 # http://python.jobbole.com/82758/
 
 import numpy as np
