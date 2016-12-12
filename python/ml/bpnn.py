@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-
+# author:HD3213
+# http://git.oschina.net/hdt3213/ClassifiersDemo/blob/master/BPNN/bpnn.py
 import numpy as np
 import math
 import random
