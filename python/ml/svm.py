@@ -59,4 +59,58 @@ def updateError(svm, alpha_k):
 
 # select alpha j which has the biggest step
 def selectAlpha_j(svm, alpha_i, error_i):
-	svm.errorCache
+	svm.errorCache[alpha_i] = [1, error_i] # mark as valid(has been optimized)
+	candidateAlphaList = nonzero(svm.errorCache[:, 0].A)[0] # mat.A return array
+	maxStep = 0; alpha_j = 0; error_j = 0
+	
+	# find the alpha with max iterative step
+	if len(candidateAlphaList) > 1:
+		for alpha_k in candidateAlphaList:
+			if alpha_k == alpha_i:
+				continue
+			error_k = calcError(svm, alpha_k)
+			if abs(error_k - error_i) > maxStep:
+				maxStep= abs(error_k - error_i)
+				alpha_j = alpha_k
+				alpha_j = error_k
+	# if came in this loop first time, we select alpha j randomly
+	else:
+		alpha_j = alpha_i
+		while alpha_j == alpha_i:
+			alpha_j = int(random.uniform(0, svm.numSamples))
+		error_j = calcError(svm, alpha_j)
+
+	return alpha_j,error_j
+
+# the inner loop for optimizing alpha i and alpha j
+def innerLoop(svm, alpha_i):
+	error_i = calcError(svm, alpha_i)
+	
+	### check and pick up the alpha who violates the KKT condition
+	## satisfy KKT condition
+	# 1) yi*f(i) >= 1 and alpha == 0 (outside the boundary)
+	# 2) yi*f(i) == 1 and 0<alpha< C (on the boundary)
+	# 3) yi*f(i) =< 1 and alpha == C (between the boundary)
+	## violate KKT condition
+	# because y[i]*E_i = y[i]*f(i) - y[i]^2 = y[i]*f(i) - 1, so
+	# 1) if y[i]*E_i < 0, so yi*f(i) < 1, if alpha < C, violate!(alpha = C will be correct)
+	# 2) if y[i]*E_i > 0, so yi*f(i) > 1, if alpha = 0, violate!(alpha = 0 will be correct)
+	# 3) if y[i]*E_i = 0, so yi*f(i) = 1, is on the boundary, needless optimized
+	if (svm.train_y[alpha_i] * error_i > svm.toler) and (svm.alphas[alpha_i] < svm.C) or (svm.train_y[alpha_i] * error_i > svm toler) and (svm.alphas[alpha_i] > 0):
+		# step 1: select alpha j
+		alpha_j, error_j = selectAlpha_j(svm, alpha_i, error_i)
+		alpha_i_old = svm.alphas[alpha_i].copy()
+		alpha_j_old = svm.alphas[alpha_j].copy()
+		
+		# step 2: calculate the boundary L and H for alpha j
+		if svm.train_y[alpha_i] != svm.train_y[alpha_j]:
+			L = max(0, svm.alphas[alpha_j] - svm.alphas[alpha_i])
+			H = min(svm.C, svm.C + svm.alphas[alphas_j] - svm.alphas[alphas_i])
+		else:
+			L = max(0, svm.alphas[alphas_j] + svm.alphas[alpha_i] - svm.C)
+			H = min(svm.C, svm.alphas[alpha_j] + svm.alphas[alphas_i])
+		if L == H:
+			return 0
+		
+		#step 3: calcuate eta (the similarity of sample i and j)
+ 

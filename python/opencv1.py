@@ -1,4 +1,4 @@
-#!/usr/bin
+#!/usr/bin/env python
 
 import cv2
 
