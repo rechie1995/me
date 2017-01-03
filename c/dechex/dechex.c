@@ -4,7 +4,7 @@
 #include "stdlib.h"
 #define MAX 50
 
-int main()
+int main(int argc, char*argv[])
 {
 	int n, a[MAX], i = 0, sign = 0;
 	//system("clear");
@@ -14,7 +14,7 @@ int main()
 	if(n == 0)
 	{
 		printf("HEX= %d", n);
-		printf("\n\n\nPress any key to exit...\n\n");
+		printf("\n\nPress any key to exit...\n\n");
 		getchar();
 		exit(0);
 	}
