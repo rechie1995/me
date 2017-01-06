@@ -1,6 +1,6 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 #-*- coding: utf-8 -*-
-# author: rechie
+# @author: rechie
 # 使用opencv修改图像大小
 
 import cv2
@@ -37,5 +37,5 @@ def process(input_imagePath):
 			cv2.imwrite(image_name,res)
 			break
 
-if __name__=='__main__':
+if __name__ == '__main__':
 	main()
