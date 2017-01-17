@@ -11,4 +11,4 @@
 打开github网站，登陆后在Settings页面下SSH and GPG Keys选项页中加入SSH Keys。  
 4、测试：`$ ssh git@github.com`  
 ![命令效果](./深度截图20170117205533.png)  
-如图所示，就算成功了。了。
+如图所示，就算成功了。
