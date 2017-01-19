@@ -6,3 +6,5 @@ http://blog.csdn.net/aorangezzz/article/details/24055391
 http://jingyan.baidu.com/article/4853e1e5649f771909f72696.html
 4、ssh key创建和github使用
 http://blog.csdn.net/xsckernel/article/details/8563993
+5、linux下编译安装OpenCV
+http://www.cnblogs.com/emouse/archive/2013/02/22/2922940.htmlhttp://www.cnblogs.com/emouse/archive/2013/02/22/2922940.html
