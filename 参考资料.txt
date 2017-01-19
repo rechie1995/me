@@ -8,3 +8,5 @@ http://jingyan.baidu.com/article/4853e1e5649f771909f72696.html
 http://blog.csdn.net/xsckernel/article/details/8563993
 5、linux下编译安装OpenCV
 http://www.cnblogs.com/emouse/archive/2013/02/22/2922940.htmlhttp://www.cnblogs.com/emouse/archive/2013/02/22/2922940.html
+6、opencv直方图计算
+http://www.tuicool.com/articles/b2iYzm
