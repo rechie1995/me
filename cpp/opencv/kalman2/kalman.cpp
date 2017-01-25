@@ -16,7 +16,7 @@ void mouseEvent(int event, int x, int y, int flags, void *param){
 	}
 }
 
-int main(void){
+int main(int argc, char *argv[]){
 	RNG rng;
 	// 1.kalman filter setup
 	const int stateNum = 4;  //状态值４×１向量(x, y, detax, detay)
@@ -35,6 +35,7 @@ int main(void){
 	setMouseCallback("kalman", mouseEvent);
 
 	Mat image(winHeight, winWidth, CV_8UC3, Scalar(0));
+	char key = (char)-1;
 
 	while(1){
 		// 2.kalman prediction
@@ -60,8 +61,8 @@ int main(void){
 		putText(image, buf, cvPoint(10, 60), CV_FONT_HERSHEY_SCRIPT_COMPLEX, 1, Scalar(0,0,0), 1, 8);
 
 		imshow("kalman", image);
-		int key = waitKey(3);
-		if (key == 27)  //ESC
+		key = (char)waitKey(3);
+		if (key == 27||key == 'q'||key == 'Q')  //ESC
 			break;
 	}
 	return 0;
