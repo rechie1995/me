@@ -24,8 +24,9 @@ Step3:更新
 更新KF KF.correct(measurement)  
 ```  
 最终结果应该是更新后的statePost  
+
   
   
-  ##  参考文献  
+## 参考文献  
 
 > 1. [卡尔曼滤波详解](http://blog.csdn.net/gdfsg/article/details/50904811)
