@@ -35,7 +35,6 @@ int main(int argc, char *argv[]){
 	setMouseCallback("kalman", mouseEvent);
 
 	Mat image(winHeight, winWidth, CV_8UC3, Scalar(0));
-	char key = (char)-1;
 
 	while(1){
 		// 2.kalman prediction
@@ -61,9 +60,9 @@ int main(int argc, char *argv[]){
 		putText(image, buf, cvPoint(10, 60), CV_FONT_HERSHEY_SCRIPT_COMPLEX, 1, Scalar(0,0,0), 1, 8);
 
 		imshow("kalman", image);
-		key = (char)waitKey(3);
+		int key = waitKey(10)&0xFF;
 		if (key == 27||key == 'q'||key == 'Q')  //ESC
 			break;
 	}
-	return 0;
+
 }
