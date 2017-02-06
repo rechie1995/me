@@ -1,9 +1,8 @@
-#include"opencv2/objdetect/objdetect.hpp"
-#include"opencv2/highgui/highgui.hpp"
-#include"opencv2/imgproc/imgproc.hpp"
-
+#include "opencv2/objdetect/objdetect.hpp"
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
 #include <iostream>
-#include <stdio.h>
+//#include <stdio.h>
 
 using namespace std;
 using namespace cv;
@@ -12,7 +11,7 @@ void help(){
 	cout << 
 		"Usage:" << endl <<
 		"./facedetect --cascade=<cascade_path>"
-		"--scale=<image scale greater ot equal to 1, try 1.3 for example"
+		"--scale=<image scale greater or equal to 1, try 1.3 for example"
 		"filename" << endl << endl <<
 		"Example:" << endl << 
 		"./facedetect --cascade=\"./data/haarcascades/haarcascade_frontalface_alt.xml\""
@@ -66,26 +65,25 @@ void detectFaces(Mat &img, CascadeClassifier &cascade, double scale){
 }
 
 int main(int argc, const char** argv){
-
-	const String scaleOpt = "--scale=";
-	size_t scaleOptLen = scaleOpt.length();
-	const String cascadeOpt = "--cascade=";
-	size_t cascadeOptLen = cascadeOpt.length();
-
-	String cascadeName, inputName;
-	double scale = 1;
-
-	for(int i = 1; i < argc; i++){
-		if (cascadeOpt.compare(0, cascadeOptLen, argv[i], cascadeOptLen)== 0){
-			cascadeName.assign(argv[i] + cascadeOptLen);
-		}else if(scaleOpt.compare(0, scaleOptLen, argv[i], scaleOptLen)==0){
-			if (!sscanf(argv[i]+scaleOpt.length(), "%lf", &scale)||scale < 1)
-				scale = 1;
-		}else if (argv[i][0] == '-'){
-			cout << "warning; Unknown option" << argv[i] << endl;
-		}else 
-			inputName.assign(argv[i]);
-
+	string inputName;
+	string cascadeName;
+	double scale;
+	cv::CommandLineParser parser(argc, argv,
+			"{help h||}"
+			"{cascade|./haarcascade_frontalface_alt2.xml|}"
+			"{scale|1|}{@filename||}");
+	if (parser.has("help")){
+		help();
+		return 0;
+	}
+	cascadeName = parser.get<string>("cascade");
+	scale = parser.get<double>("scale");
+	if (scale < 1)
+		scale = 1;
+	inputName = parser.get<string>("@filename");
+	if (!parser.check()){
+		parser.printErrors();
+		return 0;
 	}
 
 	if (cascadeName.empty()){

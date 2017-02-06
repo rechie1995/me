@@ -3,7 +3,7 @@ exe = facedetect.out
 obj = facedetect.o
 
 $(exe):$(obj)
-	$(cc) -o $(exe) $(obj) -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_objdetect
+	$(cc) -o $(exe) $(obj) -lopencv_imgcodecs -lopencv_core -lopencv_highgui -lopencv_imgproc -lopencv_objdetect
 
 facedetect.o:facedetect.cpp
 	$(cc) -c facedetect.cpp
