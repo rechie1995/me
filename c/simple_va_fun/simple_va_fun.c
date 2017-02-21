@@ -1,6 +1,18 @@
 #include"stdio.h"
 #include"stdarg.h"
-void simple_va_fun(int start, ...)
+#include"string.h"
+typedef struct EnvArgs
+{
+    char a;
+    char b;
+    char c;
+}EnvArgs;
+
+EnvArgs *envArgs;
+
+
+
+void simple_va_fun0(int start, ...)
 {
     va_list arg_ptr;
     int nArgValue = start;
@@ -15,9 +27,29 @@ void simple_va_fun(int start, ...)
     return;
 }
 
+void simple_va_fun1(char *msg, ...)
+{
+    va_list arg_ptr;
+    char *nArgValue = msg;
+    int nArgCout = 0;
+    va_start(arg_ptr, msg);
+
+    while(1)
+    {
+        if (strcmp(nArgValue,"/0") == 0)
+            break;
+        printf("Parameter %d is %s \n", nArgCout, nArgValue);
+        nArgCout++;
+        nArgValue = va_arg(arg_ptr, char *);
+    }
+    va_end(arg_ptr);
+    return;
+}
+
 int main(int argc, char* argv[])
 {
-    simple_va_fun(100, -1);
-    simple_va_fun(100, 200, -1);
+    simple_va_fun0(10, -1);
+    simple_va_fun0(100, 200, -1);
+    simple_va_fun1("DEMO", "2333", "you", "are", "hero", "/0");
     return 0;
 }
