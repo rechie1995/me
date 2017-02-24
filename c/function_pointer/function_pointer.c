@@ -7,14 +7,12 @@ typedef struct PacketTypeItem
     pfunc packetfun;
 }PacketTypeItem;
 
-PacketTypeItem Type_table[10];
-
-void func1(){
+void fun1(){
     printf("you \n");
     return;
 }
 
-void func2(){
+void fun2(){
     printf("are \n");
     return;
 }
@@ -36,14 +34,26 @@ void fun8(){
     return;
 }
 
+
+PacketTypeItem Type_table[10]={
+    {&fun1},
+    {&fun2},
+    {&fun3},
+    {&fun4},
+    {&fun8}
+};
+
+
+
 int switch_method(int packetnum){
     
-    Type_table[3].packetfun = &fun3;
-    Type_table[packetnum].packetfun();
+    //Type_table[3].packetfun = &fun3;
+    Type_table[packetnum-1].packetfun();
     return 0;
 }
 int main(int *argc, char *argv[])
 {
     switch_method(3);
+    switch_method(1);
     return 0;
 }
