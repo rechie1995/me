@@ -1,12 +1,12 @@
 # me
-just to me  
-###c  
+just for me  
+### C  
 c 语言例程  
-###python  
+### python  
 python 语言例程  
-###diaries  
+### diaries  
 日记
-###shell  
+### shell  
 运行脚本  
-###etc  
-设定
+### etc  
+一些设置问题的解决办法
