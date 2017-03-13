@@ -2,7 +2,7 @@
 
 import cv2
 
-img = cv2.imread("/home/rechie/Pictures/1.jpg")
+img = cv2.imread("../../data/Pictures/1.jpg")
 
 cv2.namedWindow("Image")
 
