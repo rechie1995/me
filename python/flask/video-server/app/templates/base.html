@@ -1,14 +1,39 @@
-<html>
-    <head>
-        {% if title %}
-        <title>{{title}} - microblog</title>
-        {% else %}
-        <title>microblog</title>
-        {% endif %}
-    </head>
-    <body>
-        <div>Microblog: <a href="/index">Home</a></div>
-        <hr>
-        {% block content %}{% endblock %}
-    </body>
-</html>
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Webcam{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <link rel="shortcut icon" href="{{url_for('static', filename = 'camera.ico')}}" type="image/x-icon">
+    <link rel="icon" href="{{url_for('static', filename = 'camera.ico')}}" type="image/x-icon">
+{% endblock %}
+
+{% block metas %}
+    <meta charset="utf-8">
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css">
+{% endblock %}
+
+{% block navbar %}
+    {% if current_user.is_authenticated %}
+    {{ nav.top.render() }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    
+    {% block page_content %}
+    {% endblock %}
+    
+</div>
+{% endblock %}

@@ -1,7 +1,21 @@
 {% extends "base.html" %}
-{% block content %}
-<h1>Hi,{{user.nickname}}!</h1>
-{% for post in posts %}
-<div><p>{{post.author.nickname}} says: <b>{{post.body}}</b></p></div>
-{% endfor %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}Video{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Hi,
+        {% if current_user.is_authenticated %}
+        {{current_user.username}}
+        {% else %}
+        Stranger
+        {% endif %}
+        !</h1>
+        {% if not known %}
+        <p>Pleased to meet you!</p>
+        {% else %}
+        <p>Happy to see you again!</p>
+        {% endif %}
+</div>
+{{ wtf.quick_form(form) }}
 {% endblock %}

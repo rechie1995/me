@@ -7,7 +7,7 @@ import time
 
 
 def main():
-    video = "rtsp://admin:123456@192.168.1.206:554/ch1/1"
+    video = "http://192.168.31.221:10244"
     capture = cv2.VideoCapture(video) # 打开一个视频文件
     if capture is None:
         print 'Video does not load !!!'
