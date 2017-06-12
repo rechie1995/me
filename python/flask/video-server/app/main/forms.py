@@ -1,7 +1,7 @@
 # coding: utf-8
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, PasswordField, SubmitField
+from wtforms import StringField, BooleanField, PasswordField, SubmitField, SelectField
 from wtforms.validators import DataRequired, Required, Length, Regexp, EqualTo, IPAddress
 from wtforms import ValidationError
 from ..models import User
@@ -18,6 +18,11 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Keep me logged in', default=False)
     submit = SubmitField('Log In')
+
+class ChoicesForm(FlaskForm):
+    status = SelectField('camera choice', validators=[Required()], choices=[('0','bedroom'),
+                                                                            ('1','classroom')])
+    submit = SubmitField('Choice')
 
 # 定义一个注册表单
 class RegistrationForm(FlaskForm):
@@ -38,6 +43,7 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Username already in use.')
 
 class SettingsForm(FlaskForm):
-    IPAddress = StringField('camera IPAddress', validators=[IPAddress()])
-    Port = StringField('port', validators=[DataRequired()])
+    Name = StringField('Name', validators=[DataRequired()])
+    IPAddress = StringField('IP', validators=[IPAddress()])
+    Port = StringField('Port', validators=[DataRequired()])
     submit = SubmitField('Set')

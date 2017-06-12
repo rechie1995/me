@@ -5,7 +5,7 @@ from flask_login import login_required, login_user, logout_user, current_user
 from flask_nav.elements import *
 
 from . import main
-from .forms import NameForm, LoginForm, RegistrationForm, SettingsForm
+from .forms import NameForm, LoginForm, RegistrationForm, SettingsForm, ChoicesForm
 from .. import db, nav, login_manager
 from ..models import User
 from ..camera import VideoCamera
@@ -28,20 +28,20 @@ def first():
 @main.route('/index', methods = ['Get', 'Post'])
 @login_required
 def index():
-    form = NameForm()
+    form = ChoicesForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.name.data).first()
-        if user is None:
-            session['known'] = False
-        else:
-            session['known'] = True
-        session['name'] = form.name.data
-        form.name.data = ''
-        return redirect(url_for('main.index'))
+ #       user = User.query.filter_by(username=form.name.data).first()
+ #       if user is None:
+ #           session['known'] = False
+ #       else:
+ #           session['known'] = True
+ #       session['name'] = form.name.data
+ #       form.name.data = ''
+        return redirect(url_for('main.video_feed'))
     return render_template("index.html", 
             form = form, 
-            name = session.get('name'),
-            known = session.get('known', False))
+            name = session.get('name'),)
+ #           known = session.get('known', False))
 
 @main.route('/user/<name>')
 def user(name):
@@ -88,3 +88,15 @@ def register():
 @main.route('/webcam', methods=['Get', 'Post'])
 def webcam():
     return render_template('webcam.html')
+
+def gen(camera):
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+                b'Content_Type:image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+
+@main.route('/video_feed')
+@login_required
+def video_feed():
+    return Response(gen(VideoCamera()),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
