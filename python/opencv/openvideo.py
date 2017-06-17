@@ -7,8 +7,8 @@ import time
 
 
 def main():
-    video = "http://192.168.31.221:10244"
-    capture = cv2.VideoCapture(video) # 打开一个视频文件
+    # video = "http://192.168.31.221:10244"
+    capture = cv2.VideoCapture(0) # 打开一个视频文件
     if capture is None:
         print 'Video does not load !!!'
     while True:
