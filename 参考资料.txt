@@ -10,3 +10,5 @@ http://blog.csdn.net/xsckernel/article/details/8563993
 http://www.cnblogs.com/emouse/archive/2013/02/22/2922940.htmlhttp://www.cnblogs.com/emouse/archive/2013/02/22/2922940.html
 6、opencv直方图计算
 http://www.tuicool.com/articles/b2iYzm
+7、Qt打包方法，使用windeployqt
+http://www.cnblogs.com/findumars/p/6021567.html
