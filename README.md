@@ -10,7 +10,7 @@ c++ 程序例程
 日记  
 ### etc  
 一些设置问题的解决办法
-### python  
+### [python](/python/README.md)  
 python 程序例程  
 ### shell  
 运行脚本  
