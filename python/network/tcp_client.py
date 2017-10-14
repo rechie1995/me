@@ -5,20 +5,19 @@
 '''
 import socket
 
-target_host = "www.baidu.com"
-target_port = 80
+TARGET_HOST = "127.0.0.1"
+TARGET_PORT = 9999
 
 # 建立一个socket对象
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+CLIENT = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-# 连接客户端 
-client.connect((target_host, target_port))
+# 连接客户端
+CLIENT.connect((TARGET_HOST, TARGET_PORT))
 
 # 发送一些数据
-client.send("GET / HTTP/1.1\r\nHost: baidu.com\r\n\r\n")
+CLIENT.send("hello\r\n\r\n")
 
 # 接收一些数据
-response = client.recv(4096)
+RESPONSE = CLIENT.recv(4096)
 
-print response
-
+print RESPONSE
