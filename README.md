@@ -22,7 +22,7 @@ c++ 程序例程
 
 一些设置问题的解决办法
 
-## [python](/python/README.md)
+## [python](/python/)
 
 python 程序例程
 
