@@ -54,7 +54,7 @@ class Bhpnet(object):
         self.getopt()
 
         # 我们是进行监听还是进从标准输入发送数据？
-        if not self.listen and not self.target and self.port > 0:
+        if not self.listen and self.target and self.port > 0:
             # 从命令行读取内存数据
             # 这里将阻塞，所以不在向标准输入发送数据时发送CTRL-D
             databuffer = sys.stdin.read()
@@ -71,7 +71,7 @@ class Bhpnet(object):
         '''
         读取命令行选项
         '''
-        if sys.argv[1:]:
+        if not sys.argv[1:]:
             self.usage()
 
         # 读取命令行选项
@@ -102,7 +102,7 @@ class Bhpnet(object):
                 assert False, "Unhandled Option"
 
         # 如果args有值则输出usage()
-        if not args:
+        if args:
             self.usage()
 
     def client_sender(self, databuffer):
@@ -114,7 +114,7 @@ class Bhpnet(object):
         try:
             client.connect((self.target, self.port))
 
-            if not databuffer:
+            if databuffer:
                 client.send(databuffer)
 
             while True:
@@ -149,7 +149,7 @@ class Bhpnet(object):
         '''
 
         # 如果没有定义目标，那么我们监听所以接口
-        if self.target:
+        if not self.target:
             self.target = "0.0.0.0"
 
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -185,9 +185,8 @@ class Bhpnet(object):
         '''
         客户端处理线程
         '''
-
         # 检测上传文件
-        if not self.upload_destination:
+        if self.upload_destination:
             # 读取所有的字符并写下目标
             file_buffer = ""
             # 持续读取数据直到没有符合的数据
@@ -210,7 +209,7 @@ class Bhpnet(object):
                 client_socket.send("Failed to save file to %s\r\n" % self.upload_destination)
 
         # 检查命令执行
-        if not self.execute:
+        if  self.execute:
             # 运行命令
             output = self.run_command(self.execute)
             client_socket.send(output)
@@ -225,11 +224,11 @@ class Bhpnet(object):
                 while "\n" not in cmd_buffer:
                     cmd_buffer += client_socket.recv(1024)
 
-                # 返还命令输出
-                response = self.run_command(cmd_buffer)
+                    # 返还命令输出
+                    response = self.run_command(cmd_buffer)
 
-                # 返回响应数据
-                client_socket.send(response)
+                    # 返回响应数据
+                    client_socket.send(response)
 
 if __name__ == '__main__':
     BHPNET = Bhpnet()
