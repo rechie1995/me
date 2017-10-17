@@ -155,6 +155,7 @@ class Bhpnet(object):
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server.bind((self.target, self.port))
         server.listen(5)
+        print "[*] Listening on %s:%d" % (self.target, self.port)
 
         while True:
             client_socket, addr = server.accept()
