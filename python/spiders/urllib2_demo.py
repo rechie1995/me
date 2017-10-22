@@ -16,6 +16,9 @@ class Spiders(object):
         '''
         self.url = ""
         self.user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
+        self.values = {}
+        self.values['username'] = ""
+        self.values['password'] = ""
 
     def getwebpage(self):
         '''
@@ -30,10 +33,7 @@ class Spiders(object):
         '''
         post方法
         '''
-        values = {}
-        values['username'] = "1016903103@qq.com"
-        values['password'] = "xxxx"
-        data = urllib.urlencode(values)
+        data = urllib.urlencode(self.values)
         self.url = "http://passport.csdn.net/account/login?from=http://my.csdn.net/my/mycsdn"
         request = urllib2.Request(self.url, data)
         response = urllib2.urlopen(request)
@@ -43,10 +43,7 @@ class Spiders(object):
         '''
         get 方法
         '''
-        values = {}
-        values['username'] = "1016903103@qq.com"
-        values['password'] = "xxxx"
-        data = urllib.urlencode(values)
+        data = urllib.urlencode(self.values)
         self.url = "http://passport.csdn.net/account/login"
         geturl = self.url + "?"+data
         request = urllib2.Request(geturl)
