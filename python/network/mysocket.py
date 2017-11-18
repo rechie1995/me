@@ -19,11 +19,22 @@ def get_remote_machine_info():
     获取远程主机信息
     '''
     remote_host = 'rechie.top'
+    print "Host name: %s" % remote_host
     try:
         print "IP address: %s" %socket.gethostbyname(remote_host)
     except socket.error, err_msg:
         print "%s: %s" %(remote_host, err_msg)
 
+def find_service_name():
+    '''
+    获取服务名称
+    '''
+    protocolname = 'tcp'
+    for port in [80, 25, 21, 22]:
+        servicename = socket.getservbyport(port, protocolname)
+        print "Port: %s => service name: %s" %(port, servicename)
+
 if __name__ == '__main__':
     print_machine_info()
     get_remote_machine_info()
+    find_service_name()
