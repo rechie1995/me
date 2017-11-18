@@ -16,6 +16,7 @@ class Spiders(object):
         '''
         self.url = ""
         self.user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
+        self.headers = {'User-Agent' : self.user_agent}
         self.values = {}
         self.values['username'] = ""
         self.values['password'] = ""
