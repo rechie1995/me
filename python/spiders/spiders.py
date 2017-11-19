@@ -6,6 +6,19 @@
 import urllib
 import urllib2
 
+def get_web_page():
+    '''
+    获取网页
+    '''
+    request = urllib2.Request("http://www.baidu.com")
+    response = urllib2.urlopen(request)
+    print response.read()
+
+def get_url_list():
+    '''
+    获取URL列表
+    '''
+
 class Spiders(object):
     '''
     爬虫类
@@ -20,15 +33,6 @@ class Spiders(object):
         self.values = {}
         self.values['username'] = ""
         self.values['password'] = ""
-
-    def getwebpage(self):
-        '''
-        获取原始网页
-        '''
-        self.url = "www.baidu.com"
-        request = urllib2.urlopen(self.url)
-        response = urllib2.urlopen(request)
-        print response.read()
 
     def post(self):
         '''
@@ -50,3 +54,7 @@ class Spiders(object):
         request = urllib2.Request(geturl)
         response = urllib2.urlopen(request)
         print response.read()
+
+if __name__ == '__main__':
+    get_web_page()
+    
