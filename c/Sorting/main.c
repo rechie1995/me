@@ -64,11 +64,11 @@ int main(int argc, char * argv[])
         switch(sort)
         {
             case 1:
-            InsertSort(R,len);
+                InsertSort(R,len);
             break;
 
             case 2:
-            SelectSort(R,len);
+                SelectSort(R,len);
             break;
 
             default:
@@ -82,5 +82,6 @@ int main(int argc, char * argv[])
         puts("");
         break;
     }
+    return 0;
     
 }
