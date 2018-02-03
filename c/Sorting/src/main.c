@@ -1,44 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "mysort.h"
+
 #define N 100010
-
-// 插入排序
-void InsertSort(int R[], int n)
-{
-    int i,j,tmp;
-    for(i=2;i<=n;i++)
-    {
-        tmp=R[i];
-        j=i-1;
-        while(j>=1 && R[j]>tmp)
-        {
-            R[j+1]=R[j];
-            j--;
-        }
-        R[j+1]=tmp;
-    }
-}
-
-// 选择排序
-void SelectSort(int R[], int n)
-{
-    int i,j,k,tmp;
-    for(i=1;i<=n;i++)
-    {
-        k=i;
-        for(j=i+1;j<=n;j++)
-        {
-            if(R[j]<R[k])
-            {
-                k=j;
-            }
-        }
-        tmp=R[i];
-        R[i]=R[k];
-        R[k]=tmp;
-    }
-}
 
 int main(int argc, char * argv[])
 {
