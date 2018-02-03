@@ -6,7 +6,7 @@ DIR_BIN = ./bin
 SRC = $(wildcard ${DIR_SRC}/*.c)
 OBJ = $(patsubst %.c,${DIR_OBJ}/%.o,$(notdir ${SRC}))
 
-TARGET = main
+TARGET = main.exe
 
 BIN_TARGET = ${DIR_BIN}/${TARGET}
 
@@ -22,3 +22,4 @@ ${DIR_OBJ}/%.o:${DIR_SRC}/%.c
 .PHONY:clean
 clean:
 	find ${DIR_OBJ} -name *.o -exec rm -rf {} \;
+	rm -rf ${BIN_TARGET}
