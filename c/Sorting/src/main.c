@@ -30,14 +30,28 @@ int main(int argc, char * argv[])
         {
             case 1:
                 InsertSort(R,len);
-            break;
+                break;
 
             case 2:
                 SelectSort(R,len);
-            break;
+                break;
+
+            case 3:
+                BubbleSort(R,len);
+                break;
+
+            case 4:
+                QuickSort(R,1,len);
+                break;
+
+            case 5:
+                HeapSort(R,len);
+                break;
 
             default:
-            break;
+                puts("程序错误！");
+                return 0;
+                break;
         }
         printf("排序结果为：");
         for(i=1;i<=len;i++)

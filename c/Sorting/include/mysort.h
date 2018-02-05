@@ -13,7 +13,13 @@ extern "C"{
 void InsertSort(int R[], int num);
 // 选择排序
 void SelectSort(int R[], int num);
-
+// 冒泡排序
+void BubbleSort(int R[], int num);
+// 快速排序
+void QuickSort(int R[], int l, int r);
+// 堆排序
+void Sift(int R[], int low, int high);
+void HeapSort(int R[], int num);
 #ifdef __cplusplus
 }
 #endif
