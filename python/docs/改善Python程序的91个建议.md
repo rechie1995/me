@@ -1,7 +1,5 @@
 # 改善Python程序的91个建议
 
-[TOC]
-
 ## 第一章：引论
 
 **建议1**：理解Pythonic概念——详见Python的《Python之禅》
