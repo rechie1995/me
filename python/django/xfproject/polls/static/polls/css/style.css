@@ -1,0 +1,46 @@
+/*腾讯QQ官网样式初始化，处理不同浏览器渲染页面的差异*/
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0} 
+body{font:18px"宋体","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;} 
+a{color:#2d374b;text-decoration:none} 
+a:hover{color:#cd0200;text-decoration:underline} 
+em{font-style:normal} 
+li{list-style:none} 
+img{border:0;vertical-align:middle} 
+table{border-collapse:collapse;border-spacing:0} 
+p{word-wrap:break-word} 
+
+.top{
+    position: absolute;
+    left: 0; right: 0;
+    height: 72px;
+}
+.sidebar{
+    position: absolute;
+    left: 0; top: 72px; bottom: 0;
+    width: 178px;
+}
+.content{
+    position: absolute;
+    left: 178px; top: 72px; right: 0; bottom: 0;
+}
+
+#sideToggle {
+    display: none;
+}
+.sidebar {
+    display: none;
+}
+.content {
+    position: absolute;
+    left: 0; top: 72px; right: 0; bottom: 0;
+}
+#sideToggle:checked + .sidebar{display: block}
+#sideToggle:checked ~ .content{left: 178px}
+
+.nav {
+    list-style: none;
+    position: absolute;
+    left: 0; right: 0;
+    padding: 0;
+}
+.nav a:link{color: #000000}
