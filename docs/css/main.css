@@ -1,49 +1,114 @@
+/* TODO: 1.添加相关注释
+         2.layout.css
+         3.type.css
+         4.table.css */
+/* 
+a)格式化reset.css
+格式化css的真正好处是能够快速启动工作，你可以在新的HTML文件里引入框架，不用再处理重置padding 和 margin，实现统一的排版、浏览器下的相同表现。
+b)布局layout.css
+定义页面是二栏还是三栏，是全屏还是1024×768……
+一个网站的设计可能有很多种布局，但是大多数都是由几个具有复用性的布局组成，选择性的引入所需要的布局，可以很快地应用所期望的页面布局。
+c) 基本样式 type.css
+定义body、h1-h6、a:link-a:active、p等的字体大小和颜色。
+基本样式的css引用，譬如将ul定义class为“ul-text”，用来展现相同的icon、行间距、链接色彩。
+还可以像这样应用：class=”ul-text square”，li前展现的是方型的icon。
+d)表格修饰 table.css
+定义table、tr、td、th、thead、tfoot、tbody、caption等标签的表现。
+和基本样式一样，但是表格在现有网站的展现形式几乎都是处理数据，所以分开存放引用。譬如在table上应用table-style-1便是黑色边框的表格，table-style-2便是黄色边框的表格。
+e)表单修饰 form.css
+定义fieldset、label、button、input 、select、textarea这几个标签的表现。
+大多数网站的表单、按钮、输入框几乎都是一样的。之所以引入这个css，是为了便于统一在各个浏览器中的展现。默认的按钮、输入框等在各个浏览器下的展现区别很大，虽然在格式化的css中已经初步的统一，但是输入框的边框，按钮的样式都是需要在这个css中定义的。无奈的是select无法做到统一，如果考虑到用js实现的话，这个成本太大了点。
+f) 打印修饰 print.css
+修饰打印输出的页面。
+g) 包含其他css的css
+frontpage.css、list.css、detail.css、register.css等等
+*/
+/* FIXME: 无 */
+
+@charset "utf-8";
+/* reset.css */
+*{
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/* layout.css*/
+body{
+  margin-top: 70px;/* 主体上外边距距离，与header高度一致 */
+  margin-bottom: 70px;/* 主体下外边距距离，与footer高度一致 */
+}
 /* header */
-
 .header {
-  position: fixed; /*设置位置为相对窗口固定*/
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 10%;
-  background-color: #222222;
-  opacity: 0.95;
+  position: fixed; /*设置位置为相对浏览器窗口固定*/
+  left: 0;/*设置左边缘为0*/
+  top: 0;/*设置上边缘为0*/
+  margin: 0 auto;
+  width: 100%;/*宽度为整个浏览器窗口*/
+  height: 70px;
 }
 
-.header .logo{
-  position: relative;
-  left: 0;
-  top: 0;
+/* header nav*/
+.header nav{
+  position: absolute;/* 相对父元素绝对定位 */
+  left: 5%; /* 左边缘 */
+  width: 90%;/* 宽度 */
+  height: 100%;/* 高度 */
+}
+
+.header nav a{
+  display: inline-block;
+  margin:  10px 1%;
   width: 20%;
-  height: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
 }
 
-.header ul{
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.container{
+  position: relative;/* 相对元素，相对正常位置进行定位*/
 }
 
-.header ul li{
-  display: inline;
-  float: left;
+.container section{
+  max-width: 700px;
 }
 
-.header ul li a{
-  width:80px;/*设置元素宽为80px*/
-  height:28px;/*设置高度为28px*/
-  line-height:28px;/*设置行距为28px，让文字在每行的中间位置*/
-  background:rgb(117, 116, 116);/*设置元素的背景为红色*/
-  color:#FFF;/*文字颜色是白色*/
-  margin:5px 10px;
-  font-size:12px;/*用12号字*/
-  display:block;/*这个比较关键，因为a本身就是联级元素，本身不具有宽高，用这个把它变成块级元素，这样前面设置的宽和高就能起作用了*/
-  text-align:center;/*让文本居中*/
-  text-decoration:none; /*去掉下划线*/
+.footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 70px;
+  width: 100%;
+}
+.footer p{
+  margin: 0.5% auto;
+  width: 40%;
+  text-align: center;
 }
 
-.navbar{
-  position: absolute;
-  left: 20%;
-  top: -5%;
+/* type.css */
+.default{
+  background-color: #afb3b4;
+}
+
+.default .header{
+  background-color: #262829;
+}
+
+.default .header nav a{
+  color: #ffffff;
+}
+
+.default .header nav a:hover{
+  color: #262829;
+  background-color: #afb3b4;
+}
+
+.default .footer{
+  background-color: #262829;
+}
+
+.default .footer p{
+  color: #ffffff;
 }
