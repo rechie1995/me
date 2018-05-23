@@ -41,6 +41,7 @@ body{
   margin: 0 auto;
   width: 100%;/*宽度为整个浏览器窗口*/
   height: 70px;
+  z-index: 9999;
 }
 
 /* header nav*/
@@ -49,6 +50,7 @@ body{
   left: 5%; /* 左边缘 */
   width: 90%;/* 宽度 */
   height: 100%;/* 高度 */
+  text-align: center /* 居中 */
 }
 
 .header nav a{
@@ -64,7 +66,14 @@ body{
 /* TODO: 添加container的layout */
 
 .container{
-  position: relative;/* 相对元素，相对正常位置进行定位*/
+  position: absolute;/* 相对元素，相对正常位置进行定位*/
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0 0;
+  background-image: url(../images/background.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .container section{
