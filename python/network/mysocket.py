@@ -11,8 +11,10 @@ def print_machine_info():
     '''
     host_name = socket.gethostname()
     ip_address = socket.gethostbyname(host_name)
+    ip_address_list = socket.gethostbyname_ex(host_name)
     print "Host name: %s" % host_name
     print "IP address: %s" % ip_address
+    print ip_address_list
 
 def get_remote_machine_info():
     '''
