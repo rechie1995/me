@@ -14,7 +14,7 @@ Mat MoveDetect(Mat temp, Mat frame);
 int main(int argc, char const *argv[])
 {
     /* code */
-    VideoCapture video("/home/rechie/Videos/Westworld.S02E02.mp4");
+    VideoCapture video("/home/rechie/Videos/test/Main1.MP4");
     if(!video.isOpened())
     {
         cout << "Video open error!" << endl;
@@ -48,7 +48,9 @@ int main(int argc, char const *argv[])
             if (waitKey(1000.0/ FPS) == 27)
             {
                 cout << "ESC退出！" << endl;
-                break;
+                destroyAllWindows();
+                return 0;
+                // break;
             }
             temp = frame.clone();
         }
