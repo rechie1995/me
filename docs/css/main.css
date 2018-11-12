@@ -71,12 +71,20 @@ body{
   width: 100%;
   height: 100%;
   margin: 0 0;
-  background-image: url(../images/background.jpg);
-  background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 
+.container .backgroundimage{
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 450px;
+  background-image: url(../images/background.jpg);
+  background-repeat: no-repeat;
+}
+
 .container section{
+  position: relative;
   max-width: 700px;
 }
 
