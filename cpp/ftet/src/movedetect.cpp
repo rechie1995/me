@@ -2,9 +2,11 @@
 #include "movedetect.h"
 //#include "global.h"
 
-string videopath = "/home/rechie/Videos/test/Main1.MP4";
-//string cascadepath = "/home/rechie/Documents/me/cpp/ftet/conf/haarcascade_frontalface_alt2.xml";
+string camerapath = "rtsp://admin:123456@192.168.1.206:554/ch1/0";
+string videopath = "/home/rechie/Videos/ftet/前后.MP4";
+string cascadepath = "/home/rechie/Documents/me/cpp/ftet/conf/haarcascade_frontalface_alt2.xml";
 double framex = 800.00;
+static int updown = 0; //站立标志值 0为无人站立，1为有人站立
 
 string window_name = "optical flow tracking";
 Mat gray;
@@ -23,6 +25,39 @@ string intToString(int number)
     stringstream ss;
     ss << number;
     return ss.str();
+}
+
+int opencamera()
+{
+    Mat frame;
+    Mat result;
+    VideoCapture capture(camerapath); //打开摄像头
+    if(!capture.isOpened())
+    {
+        cout << "读取摄像头有误" << endl;
+        return -1;
+    }
+    while(1)
+    {
+        capture >> frame; // 读取当前帧到frame中
+        if(frame.empty())
+        {
+            cout << "图像有误" << endl;
+            return -1;
+        }
+        //CascadeClassifier cascade;
+        //if(!cascade.load(cascadepath))
+        //{
+        //    cout << "cascade 未加载" << endl;
+        //}
+        //detectFaces(frame, cascade, 0.5);
+        tracking(frame, result);
+        imshow("当前视频", frame);
+        if(waitKey(30)!=255)
+        {
+            return 0;
+        }
+    }
 }
 
 int video()
@@ -220,19 +255,38 @@ void tracking(Mat frame, Mat output)
     {
         line(output, initial[i], points[1][i], Scalar(0, 0, 255));
         circle(output, points[1][i], 3, Scalar(0, 255, 0), -1);
-        if(abs(points[1][i].y - initial[i].y) > 25)
+        if(initial[i].y - points[1][i].y > 30)
         {
-            cout << "有人站起" << endl;
-            putText(output,"HAVE",Point(50,60),FONT_HERSHEY_COMPLEX,1,Scalar(255,23,0));
+            if(updown != 1)
+            {
+                cout << "有人站起" << endl;
+                putText(output,"HAVE MAN STAND UP",Point(50,60),FONT_HERSHEY_COMPLEX,1,Scalar(255,23,0));
+                updown = 1;
+            }
+            else
+            {
+                updown = 0;
+            }
         }
-        else
+        else if(points[1][i].y - initial[i].y > 25)
         {
-            cout << "无人站起" << endl;
+           
+           if(updown != 0)
+            {
+                cout << "有人坐下" << endl;
+                putText(output,"HAVE MAN STAND DOWN",Point(50,60),FONT_HERSHEY_COMPLEX,1,Scalar(255,23,0));
+                updown = 0;
+            }
+            else
+            {
+                updown = 1;
+            }
+            // cout << "无人站起" << endl;
             //putText(output,"NONE",Point(50,60),FONT_HERSHEY_SCRIPT_SIMPLEX,1,Scalar(255,23,0));
         }
     }
     
-    // 把当前跟踪结果作为下一此参考
+    // 把当前跟踪结果作为下一次参考
     swap(points[1], points[0]);
     swap(gray_prev, gray);
     imshow(window_name, output);

@@ -10,6 +10,7 @@
 using namespace cv;
 using namespace std;
 
+int opencamera();
 int video();
 Mat MoveDetect(Mat temp, Mat frame);
 void detectFaces(Mat &img, CascadeClassifier &cascade, double scale);
