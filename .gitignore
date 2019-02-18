@@ -6,6 +6,8 @@
 /.vs/*
 /.vscode/*
 /python/.idea/*
+/**/.vscode/*
+
 
 # 二进制程序
 *.o
