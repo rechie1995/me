@@ -23,7 +23,7 @@ Jinja2==2.9.6
 lxml==3.5.0
 Mako==1.0.6
 MarkupSafe==1.0
-numpy==1.11.0
+numpy==1.21.0
 pbr==3.0.1
 pyserial==3.0.1
 python-dateutil==2.6.0
