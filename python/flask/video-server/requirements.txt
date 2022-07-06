@@ -16,7 +16,7 @@ Flask-Script==2.0.5
 Flask-SQLAlchemy==2.2
 Flask-WTF==0.14.2
 -e git+https://github.com/pallets/flask.git@c7f433c49bcd752a057020ba58672b6e441eec21#egg=flaskr&subdirectory=examples/flaskr
-html5lib==0.999
+html5lib==0.999999999
 idna==2.5
 itsdangerous==0.24
 Jinja2==2.9.6
